@@ -8,12 +8,17 @@ const ManageMovieSummaries = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchMovies = async (searchTerm) => {
-    let url = `${apiServer}/api/movies`;
-    if(searchTerm){
-      url += `/search?s=${searchTerm}`;
+    try {
+      let url = `${apiServer}/api/movies`;
+      if(searchTerm){
+        url += `/search?s=${searchTerm}`;
+      }
+      const res = await axios(url);
+      setMovies(res.data)
+    } catch (err) {
+      console.log(err);
     }
-    const res = await axios(url);
-    setMovies(res.data)
+
   };
 
   useEffect(() => {
