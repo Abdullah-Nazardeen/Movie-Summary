@@ -45,10 +45,17 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const movieRes = await axios(`${apiServer}/api/movies`);
-  const movies = movieRes.data || []
 
-  const paths = movies.map(movie => ({ params: { id: movie.id.toString() } }));
+  let paths = [];
+
+  try {
+    const movieRes = await axios(`${apiServer}/api/movies`);
+    const movies = movieRes.data || []
+  
+    paths = movies.map(movie => ({ params: { id: movie.id.toString() } }));
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     paths,

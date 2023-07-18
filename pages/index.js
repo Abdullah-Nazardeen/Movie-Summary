@@ -15,13 +15,16 @@ export default function Home({ movies }) {
 export async function getStaticProps() {
   try {
     const res = await axios(`${apiServer}/api/movies`);
-    const movies = res.data;
+    const movies = res.data || []
   
     return {
       props: { movies }
     }
   } catch (err) {
     console.log(err)
+  }
+  return {
+    props: {movies: []}
   }
 }
 
