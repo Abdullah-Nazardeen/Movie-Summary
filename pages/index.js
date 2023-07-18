@@ -1,13 +1,13 @@
 import axios from "axios";
 import Hero from "../components/Hero";
-import PopularMovie from "../components/PopularMovie";
+import MovieSummary from "../components/MovieSummary";
 import { imageServer, apiServer } from "../config";
 
 export default function Home({ movies }) {
   return (
     <div className="bg-gray-700">
       <Hero />
-      <PopularMovie movies={movies} />
+      <MovieSummary movies={movies} />
     </div>
   )
 }

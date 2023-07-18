@@ -46,7 +46,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const movieRes = await axios(`${apiServer}/api/movies`);
-  const movies = movieRes.data;
+  const movies = movieRes.data || []
 
   const paths = movies.map(movie => ({ params: { id: movie.id.toString() } }));
 
